@@ -1,0 +1,17 @@
+---
+// libary import
+import PostHeader from "../components/PostHeader.astro";
+import MainLayouts from "./MainLayouts.astro";
+const { frontmatter } = Astro.props;
+const { title, description, date, category, author, image } = frontmatter;
+---
+
+<MainLayouts title={title} description={description}>
+  <PostHeader {title} {description} {date} {image} {category} {author} />
+  <div class="post-content">
+    <div class="content">
+      <slot />
+    </div>
+    <div class="sidebar"></div>
+  </div>
+</MainLayouts>

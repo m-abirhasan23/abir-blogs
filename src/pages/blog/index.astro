@@ -1,0 +1,21 @@
+---
+import Card from "../../components/Card.astro";
+import { formatBlogPosts } from "../../js/utils";
+import MainLayouts from "../../layouts/MainLayouts.astro";
+const allPosts = await Astro.glob("./*.md");
+const formatPost = formatBlogPosts(allPosts, {});
+---
+
+<MainLayouts title="My Blog">
+  <section class="container" aria-label="New Blog Posts">
+    <h1 class="h1">New Blog Posts</h1>
+    <div class="post-container">
+      {
+        formatPost &&
+          formatPost.map((post: any) => (
+            <Card post={post.frontmatter} url={post.url} />
+          ))
+      }
+    </div>
+  </section>
+</MainLayouts>

@@ -1,0 +1,45 @@
+---
+import Card from "../../components/Card.astro";
+import { formatBlogPosts, slugify } from "../../js/utils";
+import MainLayouts from "../../layouts/MainLayouts.astro";
+
+export async function getStaticPaths() {
+  const allPosts = await Astro.glob("../blog/*.md");
+  const formatPost = formatBlogPosts(allPosts, {});
+
+  const allCategory = [
+    ...new Set(formatPost.map((post: any) => post.frontmatter.category).flat()),
+  ];
+  return allCategory.map((category) => {
+    const categoryPost = formatPost.filter(
+      (post: any) => post.frontmatter.category === category
+    );
+    return {
+      params: {
+        category: slugify(category),
+      },
+      props: {
+        categoryName: category,
+        posts: categoryPost,
+      },
+    };
+  });
+}
+
+const { category } = Astro.params;
+const { posts, categoryName } = Astro.props;
+---
+
+<MainLayouts title={category}>
+  <section class="container" aria-label={`post about${category}`}>
+    <h1 class="h1">All The Post About <span>{category}</span></h1>
+    <div class="post-container">
+      {
+        posts &&
+          posts.map((post: any) => (
+            <Card post={post.frontmatter} url={post.url} />
+          ))
+      }
+    </div>
+  </section>
+</MainLayouts>

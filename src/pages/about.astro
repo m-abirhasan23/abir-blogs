@@ -1,0 +1,24 @@
+---
+import Link from "../components/Link.astro";
+import MainLayouts from "../layouts/MainLayouts.astro";
+---
+
+<MainLayouts title={"about"}>
+  <section class="container about" aria-label="404">
+    <img src="/images/headshot.jpg" alt="my headshot" />
+
+    <div class="content">
+      <h1 class="h1">My Blog</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque
+        molestias consequatur eos minus atque ab, aliquid quaerat, totam ut enim
+        impedit quas! Fuga optio, laborum possimus omnis totam ipsum amet.
+      </p>
+      <Link
+        href="mailto:iamabirhasan07@gmail.com"
+        style={"secondary"}
+        text="contact me"
+      />
+    </div>
+  </section>
+</MainLayouts>
