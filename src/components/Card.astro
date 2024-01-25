@@ -25,8 +25,8 @@ const { url } = Astro.props;
         fit={"cover"}
       />
     </a>
-    <h1 class="h2">{post.post.title}</h1>
-    <p>
+    <h1 class="h3">{post.post.title}</h1>
+    <p class="author">
       By <a href={`/author/${slugify(post.post.author)}/`}>{post.post.author}</a
       > ||
       {formatDate(post.post.date)}

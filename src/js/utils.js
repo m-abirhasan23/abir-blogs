@@ -16,7 +16,7 @@ export function formatDate(dateString) {
     timeZone: "GMT",
     weekday: undefined,
     year: "numeric",
-    month: "long",
+    month: "numeric",
     day: "numeric",
   };
   const formattedDate = date.toLocaleDateString("bs-BN", options);
